@@ -1,0 +1,51 @@
+- term: Abies
+  definition: Eine Gattung von Nadelbäumen, die richtig Tanne genannt wird.
+  categories:
+    - Natur
+- term: Write the Docs
+  definition: Ein großartiger Ort, um über Dokumentationen zu diskutieren
+  abbr: WtD
+  categories:
+    - Dokumentationen
+- term: Mean time to repair
+  definition: Die durchschnittliche Zeit, die benötigt wird, um eine ausgefallene Komponente in einem System zu reparieren
+  abbr: MTTR
+  categories:
+- term: Montiform
+  definition: In der Form einem Berg ähnelnd
+  categories:
+    - Natur
+- term: Mozilla Developer Network
+  definition: Ein großartiger Ort, um Dokumentationen zu lesen
+  abbr: MDN
+  categories:
+    - Dokumentationen
+- term: Oryctology
+  definition: Ein alter Name für Mineralogie und Geologie.
+  categories:
+    - Natur
+- term: Request for comment
+  definition: Eine Veröffentlichung der Normungsgremien des Internets
+  abbr: RFC
+  categories:
+    - Protokolle
+- term: Request for proposal
+  definition: Eine Aufforderung zur Einreichung von Vorschlägen
+  abbr: RFP
+- term: Transmission Control Protocol
+  definition: Ein bidirektionales Protokoll zur Bereitstellung eines zuverlässigen, geordneten und fehlergeprüften Datenstroms zwischen Anwendungen.
+  abbr: TCP
+  categories:
+    - Protokolle
+- term: Topaz
+  definition: Ein Mineral, das in rhombischen Prismen vorkommt, meist gelblich und durchsichtig
+  categories:
+    - Natur
+- term: User Datagram Protocol
+  definition: Ein verbindungsloses Kommunikationsprotokoll.
+  abbr: UDP
+  categories:
+    - Protokolle
+- term: Beispiel mit einer Referenz
+  reference: quickstart
+  definition: Dies ist kein tatsächlicher Eintrag, sondern ein einfaches Beispiel

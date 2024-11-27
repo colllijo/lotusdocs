@@ -1,5 +1,6 @@
 {{- $categories := .Get 0 -}}
 {{- $filter := split $categories " " -}}
+{{- $data := index .Site.Data .Site.Language.Lang -}}
 
 <style>
   dd {
@@ -7,16 +8,18 @@
   }
 </style>
 
+{{- if $data -}}
 <dl>
-  {{- range sort .Site.Data.termbase "term" -}}
-    {{- if $categories -}}
-      {{- if eq ((intersect $filter .categories) | len) 0 -}}
-        {{- continue -}}
+    {{- range sort $data.termbase "term" -}}
+      {{- if $categories -}}
+        {{- if eq ((intersect $filter .categories) | len) 0 -}}
+          {{- continue -}}
+        {{- end -}}
       {{- end -}}
+        {{- if .reference -}}<a href="{{- printf "/%s/%s" (.Site.Params.docs.pathName | default "docs") .reference -}}">{{- end -}}
+        <dt>{{- .term -}}{{- with .abbr }} ({{ . }}){{ end -}}</dt>
+        {{- if .reference -}}</a>{{- end -}}
+        <dd>{{- .definition | markdownify -}}</dd>
     {{- end -}}
-      {{- if .reference -}}<a href="{{- printf "/%s/%s" (.Site.Params.docs.pathName | default "docs") .reference -}}">{{- end -}}
-      <dt>{{- .term -}}{{- with .abbr }} ({{ . }}){{ end -}}</dt>
-      {{- if .reference -}}</a>{{- end -}}
-      <dd>{{- .definition | markdownify -}}</dd>
-  {{- end -}}
 </dl>
+{{- end -}}
