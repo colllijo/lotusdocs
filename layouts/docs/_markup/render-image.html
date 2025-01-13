@@ -1,4 +1,6 @@
+{{ $baseURL := site.BaseURL }}
 {{ $dest := .Destination }}
+{{ $fullDest := urls.JoinPath $baseURL (safeURL $dest) }}
 {{ $text := .PlainText }}
 {{ $url := urls.Parse $dest }}
 
@@ -18,7 +20,7 @@
         <img src="{{ .RelPermalink | safeURL }}" alt="{{ $text }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
       {{ end }}
     {{ else }}
-      <img src="{{ .Destination | safeURL }}" alt="{{ $text }}" loading="lazy">
+      <img src="{{ $fullDest }}" alt="{{ $text }}" loading="lazy">
     {{ end }}
     <figcaption>{{ .Title | markdownify }}</figcaption>
   </figure>
@@ -30,6 +32,6 @@
       <img src="{{ .RelPermalink | safeURL }}" alt="{{ $text }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
     {{ end }}
   {{ else }}
-    <img src="{{ .Destination | safeURL }}" alt="{{ $text }}" loading="lazy">
+    <img src="{{ $fullDest }}" alt="{{ $text }}" loading="lazy">
   {{ end }}
 {{ end }}
