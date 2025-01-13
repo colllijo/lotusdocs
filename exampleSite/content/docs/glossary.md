@@ -1,5 +1,5 @@
 ---
-weight: 400
+weight: 500
 title: "Glossary"
 description: ""
 icon: "article"
