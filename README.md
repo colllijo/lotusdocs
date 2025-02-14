@@ -354,16 +354,17 @@ Parameters specific to the emoticon feedback widget template.
 
 #### Default Feedback Template
 
-Parameters specific to the default feedback template.
+By default the theme contains for positive and negative feedback options.
+But they may be customized using the following parameters.
+
+##### [params.feedback.messages.<languageCode>]
 
 | Parameter | Type | Default Value | Description |
 |---------|-----|-----|------|
-| `positiveEventName` | string | `Positive Feedback` | **optional** - Set the name for the positive feedback event. |
-| `negativeEventName` | string | `Negative Feedback` | **optional** - Set the name for the negative feedback event. |
-| `positiveFormTitle` | string | `What did you like?` | **optional** - Set the title for the positive feedback form. |
-| `negativeFormTitle` | string | `What went wrong?` | **optional** - Set the title for the negative feedback form. |
-| `positiveForm` | array | N/A | **optional** - A nested array of ratings and descriptions for the positive feedback form. e.g. `[["Easy to understand","Easy to follow and comprehend."]]`, the first element in the nested array represents the rating, and the second, the description. |
-| `negativeForm` | array | N/A | **optional** - A nested array of ratings and descriptions for the negative feedback form. e.g. `[["Hard to understand","Too complicated or unclear."]]`, the first element in the nested array represents the rating, and the second, the description. |
+| `positiveTitle` | string | `What did you like?` | **optional** - Set the title for the positive feedback form. |
+| `negativeTitle` | string | `What went wrong?` | **optional** - Set the title for the negative feedback form. |
+| `positive` | array | N/A | **optional** - A nested array of ratings and descriptions for the positive feedback form. e.g. `[["Easy to understand","Easy to follow and comprehend."]]`, the first element in the nested array represents the rating, and the second, the description. |
+| `negative` | array | N/A | **optional** - A nested array of ratings and descriptions for the negative feedback form. e.g. `[["Hard to understand","Too complicated or unclear."]]`, the first element in the nested array represents the rating, and the second, the description. |
 
 ## Author
 

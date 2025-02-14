@@ -137,11 +137,73 @@
     </div>
 
     <div id="feedback-form-pos" data-type="positive" class="feedback-form justify-content-md-start justify-content-sm-center">
-        <p class="fw-bold fs-5">{{ .Site.Params.feedback.positiveFormTitle | default "What did you like?" }}</p>
+        <p class="fw-bold fs-5">{{ (index .Site.Params.feedback.messages .Site.Language).positiveTitle | default (i18n "feedback_positive_title") }}</p>
 
-        {{ range $index, $value := .Site.Params.feedback.positiveForm }}
-            {{ $rating := (index . 0) }}
-            {{ $description := (index . 1) }}
+        {{ with (index .Site.Params.feedback.messages .Site.Language).positive }}
+            {{ range $index, $value := . }}
+                {{ $rating := (index . 0) }}
+                {{ $description := (index . 1) }}
+                <div class="form-check pb-1">
+                    <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                    <label class="form-check-label" for="radio{{ $index }}Pos">
+                        {{ $rating }}
+                        {{ if $description }}
+                            <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                        {{ end }}
+                    </label>
+                </div>
+                <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+            {{ end }}
+        {{ else }}
+            {{ $rating := i18n "feedback_positive_accurate" }}
+            {{ $description := i18n "feedback_positive_accurate_desc" }}
+            {{ $index := 0 }}
+
+            <div class="form-check pb-1">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
+                    {{ $rating }}
+                    {{ if $description }}
+                        <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                    {{ end }}
+                </label>
+            </div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+            
+            {{ $rating := i18n "feedback_positive_solved_problem" }}
+            {{ $description := i18n "feedback_positive_solved_problem_desc" }}
+            {{ $index := 1 }}
+
+            <div class="form-check pb-1">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
+                    {{ $rating }}
+                    {{ if $description }}
+                        <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                    {{ end }}
+                </label>
+            </div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+
+            {{ $rating := i18n "feedback_positive_easy_to_understand" }}
+            {{ $description := i18n "feedback_positive_easy_to_understand_desc" }}
+            {{ $index := 2 }}
+
+            <div class="form-check pb-1">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
+                    {{ $rating }}
+                    {{ if $description }}
+                        <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                    {{ end }}
+                </label>
+            </div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+
+            {{ $rating := i18n "feedback_positive_something_else" }}
+            {{ $description := "" }}
+            {{ $index := 3 }}
+
             <div class="form-check pb-1">
                 <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
                 <label class="form-check-label" for="radio{{ $index }}Pos">
@@ -157,21 +219,83 @@
     </div>
 
     <div id="feedback-form-neg" data-type="negative" class="feedback-form justify-content-sm-center">
-        <p class="fw-bold fs-5">{{ .Site.Params.feedback.negativeFormTitle | default "What went wrong?" }}</p>
+        <p class="fw-bold fs-5">{{ (index .Site.Params.feedback.messages .Site.Language).negativeTitle | default (i18n "feedback_negative_title") }}</p>
 
-        {{ range $index, $value := .Site.Params.feedback.negativeForm }}
-            {{ $rating := (index . 0) }}
-            {{ $description := (index . 1) }}
+        {{ with (index .Site.Params.feedback.messages .Site.Language).negative }}
+            {{ range $index, $value := . }}
+                {{ $rating := (index . 0) }}
+                {{ $description := (index . 1) }}
+                <div class="form-check pb-1">
+                    <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Neg" required>
+                    <label class="form-check-label" for="radio{{ $index }}Neg">
+                        {{ $rating }}
+                        {{ if $description }}
+                            <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                        {{ end }}
+                    </label>
+                </div>
+                <div id="radio{{ $index }}NegTextContainer" class="feedback-textarea-container"></div>
+            {{ end }}
+        {{ else }}
+            {{ $rating := i18n "feedback_negative_inaccurate" }}
+            {{ $description := i18n "feedback_negative_inaccurate_desc" }}
+            {{ $index := 0 }}
+
             <div class="form-check pb-1">
-                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Neg" required>
-                <label class="form-check-label" for="radio{{ $index }}Neg">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
                     {{ $rating }}
                     {{ if $description }}
                         <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
                     {{ end }}
                 </label>
             </div>
-            <div id="radio{{ $index }}NegTextContainer" class="feedback-textarea-container"></div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+            
+            {{ $rating := i18n "feedback_negative_info_not_found" }}
+            {{ $description := i18n "feedback_negative_info_not_found_desc" }}
+            {{ $index := 1 }}
+
+            <div class="form-check pb-1">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
+                    {{ $rating }}
+                    {{ if $description }}
+                        <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                    {{ end }}
+                </label>
+            </div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+
+            {{ $rating := i18n "feedback_negative_hardt_to_understand" }}
+            {{ $description := i18n "feedback_negative_hard_to_understand_desc" }}
+            {{ $index := 2 }}
+
+            <div class="form-check pb-1">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
+                    {{ $rating }}
+                    {{ if $description }}
+                        <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                    {{ end }}
+                </label>
+            </div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
+
+            {{ $rating := i18n "feedback_negative_something_else" }}
+            {{ $description := "" }}
+            {{ $index := 3 }}
+
+            <div class="form-check pb-1">
+                <input class="form-check-input" type="radio" name="feedback" autocomplete="off" value="{{ $rating | lower }}" id="radio{{ $index }}Pos" required>
+                <label class="form-check-label" for="radio{{ $index }}Pos">
+                    {{ $rating }}
+                    {{ if $description }}
+                        <p class="feedback-radio-desc fw-normal mb-0">{{ $description }}</p>
+                    {{ end }}
+                </label>
+            </div>
+            <div id="radio{{ $index }}PosTextContainer" class="feedback-textarea-container"></div>
         {{ end }}
 
     </div>
@@ -232,7 +356,7 @@
                     textarea.removeChild(textarea.firstChild);
                 }
             }
-            addOn.innerHTML +='<textarea id="textarea" cols="55" maxlength="500" rows="3" placeholder="(Optional) Try to be as specific and detailed as possible!" type="text" class="feedback-textarea p-2 mb-2"></textarea>';
+        addOn.innerHTML +='<textarea id="textarea" cols="55" maxlength="500" rows="3" placeholder="{{ i18n "feedback_placeholder" }}" type="text" class="feedback-textarea p-2 mb-2"></textarea>';
             feedbackSubmitBtn.removeAttribute("disabled");
             // console.log(radioID);
         });
@@ -248,7 +372,7 @@
         function success(e) {
             form.remove();
             feedbackSubmitContainer.remove();
-            result.innerHTML = '{{ .Site.Params.feedback.successMsg | default "Thank you for helping to improve our documentation!" }}';
+            result.innerHTML = '{{ .Site.Params.feedback.successMsg | default (i18n "feedback_success") }}';
             result.classList.add("is-visible");
         }
         try {
@@ -309,7 +433,7 @@
             console.log(err);
             form.remove();
             feedbackSubmitContainer.remove();
-            result.innerHTML = '{{ .Site.Params.feedback.errorMsg | default "Sorry! There was an error while attempting to submit your feedback!" }}';
+            result.innerHTML = '{{ .Site.Params.feedback.errorMsg | default (i18n "feedback_error") }}';
             result.classList.add("is-visible");
         }
         // console.log("feedback submitted")
