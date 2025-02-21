@@ -9,4 +9,10 @@
             <!-- <a href="{{ "" | relURL }}"><i class="material-icons size-48 me-0">menu_book</i></a> -->
         </div>
       </div>    
+      <script>
+          document.addEventListener(
+              'DOMContentLoaded',
+              function () { plausible('404', { props: { path: document.location.pathname } }); }
+          );
+      </script>
 {{ end }}
