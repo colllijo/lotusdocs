@@ -16,7 +16,7 @@
           {{- continue -}}
         {{- end -}}
       {{- end -}}
-        {{- if .reference -}}<a href="{{- printf "/%s/%s" (.Site.Params.docs.pathName | default "docs") .reference -}}">{{- end -}}
+        {{- if .reference -}}<a href="{{- printf "%s%s/%s" site.Home.Permalink (.Site.Params.docs.pathName | default "docs") .reference -}}">{{- end -}}
         <dt>{{- .term -}}{{- with .abbr }} ({{ . }}){{ end -}}</dt>
         {{- if .reference -}}</a>{{- end -}}
         <dd>{{- .definition | markdownify -}}</dd>

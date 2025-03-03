@@ -1,4 +1,4 @@
-{{ $baseURL := site.BaseURL }}
+{{ $baseURL := site.Home.Permalink }}
 {{ $dest := .Destination }}
 {{ $fullDest := urls.JoinPath $baseURL (safeURL $dest) }}
 {{ $text := .PlainText }}
