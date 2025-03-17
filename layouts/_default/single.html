@@ -17,13 +17,25 @@
         {{ end }}
         <script src="{{ $mermaid.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $mermaid.Data.Integrity }}"{{ end }}></script>
         <script>
-            const config = {
-                startOnLoad:true,
+            const localMode = localStorage.getItem('theme');
+            window.mermaidConfig = {
+                startOnLoad: false,
                 logLevel: "error",
                 align: "center",
-                theme:"null"
+                theme: localMode === 'dark' ? "dark" : "default"
             };
-            mermaid.initialize(config);
+            mermaid.initialize(window.mermaidConfig);
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const diagrams = document.querySelectorAll('.mermaid');
+                diagrams.forEach(diagram => {
+                    if (!diagram.dataset.originalContent) {
+                        diagram.dataset.originalContent = diagram.innerHTML;
+                    }
+                });
+
+                mermaid.run();
+            });
         </script>
         {{ end }}
 
