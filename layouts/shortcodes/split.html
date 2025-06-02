@@ -1,16 +1,46 @@
 <!-- Shortcode for creating a vertical split -->
 {{ $type := .Get "type" }}
 {{ $size := .Get "size" | default "1fr 1fr" }}
+{{ $rows := split ($size) " " }}
+{{ $id := delimit (shuffle (seq 1 9)) "" }}
 
 {{ if eq $type "start" }}
-    <div
-        style="display: grid; grid-template-columns: {{ $size }}; grid-gap: 2em;"
-    >
-        <div>
-{{ else if ne $type "end" }}
-        </div>
-        <div>
-{{ else }}
-        </div>
+<style>
+  .split-{{ $id }} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+  
+  @media-query (max-width: 720px) {
+    .split-{{ $id }} {
+      flex-direction: column !important;
+    }
+  }
+
+  {{ range $i, $row := $rows }}
+    {{ $flex := "" }}
+    {{ if findRE "^[0-9.]+fr$" $row }}
+      {{ $grow := replaceRE "fr$" "" $row }}
+      {{ $flex = printf "%s 1 0" $grow }}
+    {{ else if eq $row "auto" }}
+      {{ $flex = "0 0 auto" }}
+    {{ else }}
+      {{ $flex = printf "0 0 %s" $row }}
+    {{ end }}
+    .split-{{ $id }} > *:nth-child({{ add $i 1 }}) {
+      flex: {{ $flex }};
+    }
+  {{ end }}
+</style>
+  <div
+    class="split-{{ $id }}"
+  >
+    <div>
+  {{ else if ne $type "end" }}
     </div>
+    <div>
+  {{ else }}</div>
+  </div>
 {{ end }}
